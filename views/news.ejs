@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand mr-5" href="#">NewsApp</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse float-lg-right" id="navbarTogglerDemo02">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="/search">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        name="search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+<%if(newsinfo != ""){%> <%newsinfo.forEach(news=>{%>
+
+<div class="card mb-3 mt- container">
+  <img
+    src="<%=news.urlToImage%>"
+    class="card-img-top"
+    alt="News reference image"
+  />
+  <div class="card-body">
+    <h5 class="card-title"><%=news.title%></h5>
+    <p class="card-text"><%=news.content%></p>
+    <p class="card-text">
+      <small class="text-muted"
+        ><%= moment(news.publishedAt).format("MMMM Do YYYY, h:mm:ss A")%></small
+      >
+      <a
+        class="ml-4 float-right btn btn-info"
+        target="_blanks"
+        href="<%=news.url%>"
+        >Read news</a
+      >
+    </p>
+  </div>
+</div>
+
+<%}) %> <%}%>
