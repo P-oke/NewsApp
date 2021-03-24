@@ -9,23 +9,30 @@ router.get("/", async (req, res)=>{
 
         const newsinfo= await news.json()
         console.log(newsinfo);
-        // console.log(news);
+        
            
         res.render("news", {newsinfo:newsinfo.articles, moment})
         
     } catch (error) {
-        
+               
         console.log(error.message);
-        
     }
     
    
 })
 
-router.post("/search", (req, res)=>{
-    const search= req.body.search
-    console.log(search);
-
+router.post("/search", async (req, res)=>{
+    try {
+        const search= req.body.search
+        const news= await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=86cba8de0bd3497fa6b5faea7dae25be`)
+        const newsinfo = await news.json()
+        res.render("news", {newsinfo:newsinfo.articles, moment})
+    
+    } catch (error) {
+        console.log(error.message);
+        
+    }
+   
 })
 
 module.exports=router
