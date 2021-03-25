@@ -8,7 +8,7 @@ router.get("/", async (req, res)=>{
         const news= await fetch("http://newsapi.org/v2/top-headlines?country=us&categories=technology&apiKey=86cba8de0bd3497fa6b5faea7dae25be")
 
         const newsinfo= await news.json()
-        console.log(newsinfo);
+        
         
            
         res.render("news", {newsinfo:newsinfo.articles, moment})
